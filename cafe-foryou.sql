@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS`Groups`;
 CREATE TABLE `User`(
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `firstname` VARCHAR(120) NOT NULL,
-    `lastname` VARCHAR(120) NOT NULL,
+    `lastname` VARCHAR(121) NOT NULL,
 
     PRIMARY KEY (`id`)
 
