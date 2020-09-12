@@ -4,6 +4,21 @@
 const Model = use('Model')
 
 class SAdmin extends Model {
+    static boot() {
+        super.boot()
+        this.addHook('beforeSave', async(adminInstance) => {
+            if (adminInstance.dirty.password) {
+                adminInstance.password = await Hash.make(adminInstance.dirty.password)
+            }
+        })
+    }
+    static get primaryKey() {
+        return 'admin_id'
+    }
+    cafes() {
+        return this.hasMany('App/Models/Cafe')
+    }
 }
+
 
 module.exports = SAdmin
