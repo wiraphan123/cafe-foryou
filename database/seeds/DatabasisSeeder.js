@@ -15,6 +15,9 @@ const Factory = use('Factory')
 
 class DatabasisSeeder {
   async run () {
+    const admin= await Factory
+    .model('App/Models/Admin')
+    .createMany(10)
   }
 }
 
