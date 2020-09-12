@@ -20,6 +20,12 @@ class User extends Model {
       }
     })
   }
+  static get primaryKey() {
+    return 'user_id'
+}
+cafes() {
+  return this.hasMany('App/Models/Cafe')
+}
 
   /**
    * A relationship on tokens is required for auth to
