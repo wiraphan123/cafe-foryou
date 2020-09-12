@@ -11,7 +11,7 @@ class CreateAdminSchema extends Schema {
             table.string("last_name", 120).notNullable()
             table.string("first_name", 150).notNullable()
             table.string("last_name", 150).notNullable()
-            table.integer("age", 3).notNullable()
+            table.integer("age", 2).notNullable()
             table.string('gender', 150).notNullable()
             table.string("admin_name", 100).notNullable().unique()
             table.string("password").notNullable()
