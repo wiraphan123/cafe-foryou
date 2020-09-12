@@ -22,5 +22,6 @@ Route.get('/', () => {
     Route.resource('/users','UserController')
     Route.resource('/admin','UserAdminController')
     Route.resource('/communitys','CommunityController')
+    Route.resource('/cafes', 'CafeController')
   })
 })
