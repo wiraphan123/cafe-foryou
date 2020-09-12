@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class SUserPostCommunity extends Model {
+    static get primaryKey() {
+        return ' userpostcommunity_id'
+    }
 }
 
 module.exports = SUserPostCommunity
