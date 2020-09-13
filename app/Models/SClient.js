@@ -10,8 +10,8 @@ class SClient extends Model {
 static get primaryKey() {
     return 'password'
 }
-admin() {
-    return this.belongsTo('App/Models/Admin')
+client() {
+    return this.belongsTo('App/Models/Client')
 }
 }
 module.exports = SClient
