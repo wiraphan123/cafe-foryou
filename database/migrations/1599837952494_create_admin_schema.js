@@ -7,14 +7,14 @@ class CreateAdminSchema extends Schema {
   up () {
     this.create('admins', (table) => {
     table.increments('admin_id', 5)
-            table.string("first_name", 120).notNullable()
-            table.string("last_name", 120).notNullable()
-            table.string("first_name", 150).notNullable()
-            table.string("last_name", 150).notNullable()
-            table.integer("age", 2).notNullable()
+            table.string('first_name', 120).notNullable()
+            table.string('last_name', 120).notNullable()
+            table.string('first_name', 150).notNullable()
+            table.string('last_name', 150).notNullable()
+            table.integer('age', 2).notNullable()
             table.string('gender', 150).notNullable()
-            table.string("admin_name", 100).notNullable().unique()
-            table.string("password").notNullable()
+            table.string('admin_name', 100).notNullable().unique()
+            table.string('password', 8).notNullable()
 
             table.timestamps()
         })
