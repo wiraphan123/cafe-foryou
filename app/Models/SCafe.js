@@ -8,8 +8,8 @@ class SCafe extends Model {
         return 'cafe_id'
     }
 
-    admin() {
-        return this.belongsTo('App/Models/Admin')
+    Cafe() {
+        return this.belongsTo('App/Models/cafe')
     }
     user() {
         return this.belongsTo('App/Models/User')
