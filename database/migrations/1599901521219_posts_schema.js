@@ -6,10 +6,9 @@ const Schema = use('Schema')
 class PostsSchema extends Schema {
   up () {
     this.create('posts', (table) => {
-      table.increments()
-      table.timestamps()
       table.string('post',100)
       table.string('detail',500)
+      table.string('community', 1000)
     })
   }
 
