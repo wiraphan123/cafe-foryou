@@ -41,7 +41,7 @@ class DatabasisSeeder {
 
     const post_community = await Factory
     .model('App/Model/Post_Community')
-    .createMany(10)s
+    .createMany(10)
   }
 }
 
