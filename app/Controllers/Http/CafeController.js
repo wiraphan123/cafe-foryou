@@ -1,14 +1,8 @@
 'use strict'
 
-class CafeController {
-    const Cafe = use("App/Models/Cafe")
-    const Database = use('Database')
+    const Cafe = use('App/Models/Cafe')
+    const cafeUtil = requrire('../../../util/cafeUtil')
 
-function numberTypeParamValidator(number) {
-    if (Number.isNaN(parseInt(number)))
-        return { error: `param: ${number} is not supported, please use number type param instead.` }
-    return {}
-}
 
 class CafeController {
     async index({ request }) {
