@@ -15,6 +15,10 @@ class SAdmin extends Model {
     static get primaryKey() {
         return 'admin_id'
     }
+
+    update_websites() {
+        return this.hasMany('App/Models/AdminUpdateWebsite')
+}
     cafes() {
         return this.hasMany('App/Models/Cafe')
     }
