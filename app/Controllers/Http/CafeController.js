@@ -15,6 +15,10 @@ class CafeController {
     async show({ request }) {
         const { id } = request.params
         const { references } = request.qs
+        const validatedValue = numberTypeParamValidator(id)
+        if (validatedValue.error)
+            return { status: 500, error: validatedValue.error, data: undefined }
+
         const cafeUtil = new CafeUtil(Cafe)
         const cafe = cafeUtil.getById(id, references)
         return { status: 200, error: undefined, data: cafe || {} }
@@ -22,6 +26,9 @@ class CafeController {
     }
     async cafe({ request }) {
         const { cafe_name, detail, comment_review, user_id, admin_id } = request.body
+        const validatedData = await CafeValidator(request.body)
+        if (validatedData.error)
+            return { status: 422, error: validatedData.error, data: undefined }
         const { references } = request.qs
 
 
