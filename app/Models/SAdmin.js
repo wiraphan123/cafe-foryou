@@ -14,6 +14,7 @@ class SAdmin extends Model {
     }
     static get primaryKey() {
         return 'admin_id'
+
     }
 
     update_websites() {
