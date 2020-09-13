@@ -13,8 +13,8 @@ class SAdminUpdateWebsite extends Model {
     static get updatedAtColumn() {
         return null;
     }
-    admin() {
-        return this.belongsTo('App/Models/Admin')
+    adminUpdateWebsite() {
+        return this.belongsTo('App/Models/AdminUpdateWebsite')
     }
 }
 
