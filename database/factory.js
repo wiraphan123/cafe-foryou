@@ -69,13 +69,6 @@ Factory.blueprint('App/Models/User_post_Community', (faker) =>{
         detail_time : faker.detail()
     }
 })
-Factory.blueprint('App/Models/UserPostCommunity', (faker) => {
-    return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
-    }
-})
 Factory.blueprint('App/Models/WatchWebiste',(faker) =>{
     return{
         post : faker.post(),
