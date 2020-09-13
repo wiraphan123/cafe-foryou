@@ -1,55 +1,30 @@
 'use strict'
 
 class AdminController {
-    async store({ request }) {
-        const { news, detail } = request.body
-
-        const rules = {
-            news: 'required',
-            datail: 'required',
-        }
-        const validation = await Validator.validateAll(request.body, rules)
-
-        if (validation.fails())
-            return { status: 422, error: validation.messages(), data: undefined }
-
-        const subject = new Subject();
-        subject.admin_id = admin_id;
-        await subject.save()
-
-        return { status: 200, error: undefined, data: subject }
-
+    async index({ request }) {
+        const { references } = request.qs
+        const adminUtil = new AdminUtil(Admin)
+        const admins = await adminUtil.getAll(references)
+        return { status: 200, error: undefined, data: admins }
     }
-    async update({ request }) {
-
-        const { body, params } = request
-        const { id } = params
-        const { news, detail } = body
-
-
-        const updateNewsId = await Database
-            .table('update_news')
-            .where({ update_news_id: id })
-            .update({ news, detail })
-
-        const update_news = await Database
-            .table('update_news')
-            .where({ update_news_id: updateNewsId })
-            .first()
-
-        return { status: 200, error: undefined, data: update_news }
-    }
-    async destroy({ request }) {
+    async show({ request }) {
         const { id } = request.params
+        const { references } = request.qs
+        const validatedValue = numberTypeParamValidator(id)
+        if (validatedValue.error)
+            return { status: 500, error: validatedValue.error, data: undefined }
 
-        await Database
-            .table('update_news')
-            .where({ update_news_id: id })
-            .delete()
-
-        return { status: 200, error: undefined, data: { maessage: 'success' } }
+        const adminUtil = new AdminUtil(Admin)
+        const admins = adminUtil.getById(id, references)
+        return { status: 200, error: undefined, data: admins || {} }
+    }
+        async store({ request }) {
+            const { first_name, last_name, age, gender, admin_name, password, status } = request.body
+            const { references } = request.qs
+            const validatedData = await AdminValidator(request.body)
+            if (validatedData.error)
+                return { status: 422, error: validatedData.error, data: undefined }
     }
 }
-
 
 module.exports = AdminController
