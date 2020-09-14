@@ -10,6 +10,6 @@ class SClientsWatchCafe extends Model {
     clientWatchCafe(){
         return this.belongsTo('App/Models/Client_Watch_Cafe')
     }
-    }
+    
 }
 module.exports = SClientsWatchCafe
