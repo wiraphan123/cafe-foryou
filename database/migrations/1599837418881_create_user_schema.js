@@ -5,9 +5,15 @@ const Schema = use('Schema')
 
 class CreateUserSchema extends Schema {
   up () {
-    this.create('create_users', (table) => {
-      table.increments()
-      table.timestamps()
+    this.create('users', (table) => {
+      table.increments('user_id', 5)
+      table.string('frist_name', 150).notNullable()
+      table.string('last_name', 150).notNullable()
+      table.string('age', 2).notNullable()
+      table.integer('age', 2).notNullable()
+      table.string('gender', 150).notNullable()
+      table.string('username', 100).notNullable().unique()
+      table.string('password').notNullable()
     })
   }
 
