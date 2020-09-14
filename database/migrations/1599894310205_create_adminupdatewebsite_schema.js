@@ -3,24 +3,19 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class CreateUserpostcommunitySchema extends Schema {
-  up () {
-    this.create('create_userpostcommunities', (table) => {
-      table.increments('id', 5).notNullble()
-      table.integer("user_id").notNullable().unsigned()
-      table.integer("communities_id").notNullable().unsigned()
-      table
-          .foreign('user_id')
-          .references('users.user_id')
-      table
-          .foreign('community_id')
-          .references('communities.communities_id')
+class CreateAdminupdatewebsiteSchema extends Schema {
+    up() {
+      this.create('admin_update_websites', (table) => {
+        table.increments("update_websits_id", 5)
+          table.string("websites", 120).notNullable()
+          table.string("detail").notNullable()
+          table.timestamps()
   })
 }
 
   down () {
-    this.drop('user_post_communities')
+    this.drop('admin_update_websites')
   }
 }
 
-module.exports = CreateUserpostcommunitySchema
+module.exports = CreateAdminupdatewebsiteSchema
