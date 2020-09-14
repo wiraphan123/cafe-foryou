@@ -5,11 +5,6 @@ const Database = use('Database')
 const User = use('App/Models/User')
 const UserUtil = require('../../../util/UserUtil')
 
-function numberTypeParamValidator(number) {
-    if(Number.isNaN(parseInt(number))) 
-        return { error:  `param: ${number} is not support, Pleasr use number type param instead. ` }
-    return {}
-}
 
 class UserController {
     async index(){
@@ -21,9 +16,7 @@ class UserController {
     async show({request}){
         const { id } = request.params
         const { references } = request.qs
-        const validatedValue = numberTypeParamValidator(id)
-        if (validatedValue.error)
-            return { status: 500, error: validatedValue.error, data: undefined }
+        const UserValidator = require("../../../service/UserValidator")
         constuserUtill = new UserUtill(User)
         const user = userUtill.getById(id, references)
         return{ status: 200, error : undefined, data : user ||{} }
@@ -39,28 +32,27 @@ class UserController {
         return { status: 200, error: undefined, data: user }
     }
     async update({ request }) {
-        const { body, params } = request
-        const { id } = params
-        const { first_name, last_name, age, gender, user_name, password, } = body
+        const {references = undefined} =request.qs
+        const validation = await UserValidator(request.body)
+
+        if(validation.error){
+            return {status: 422, 
+              error: validation.error,
+              data: undefined}
+          }
         
-        const userId = await Database
-            .table('users')
-            .where({ user_id: id })
-            .update({ first_name, last_name, age, gender, user_name, password, })
-        
-            const user = await Database
-            .table('users')
-            .where({ user_id:userId })
-            .first()
-        return { status: 200, error: undefined, data: user }
-    }
+          const userUtil = new UserUtil(User)
+          const users = await userUtil
+          .updateById(request,references)
+            
+            return { status: 200, error: undefined, data: users }
+              }
     async destroy({ request }) {
-        const { id } = request.params
-        await Database
-            .table('user')
-            .where({user_id: id })
-            .delete()
-        return { status: 200, error: undefined, data: { maessage: 'success' } }
+        const {references = undefined} =request.qs
+        const userUtil = new UserUtil(User)
+        const user = await userUtil.deletById(request,references)
+
+            return {status: 200, error: undefined, data: {massage: 'success' }}
     }
     
 }
