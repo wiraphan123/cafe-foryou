@@ -18,10 +18,16 @@ const Route = use('Route')
 
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
-  oute.group(()=>{
-    Route.resource('/users','UserController')
-    Route.resource('/admin','UserAdminController')
-    Route.resource('/communitys','CommunityController')
-    Route.resource('/cafes', 'CafeController')
-  })
 })
+
+  Route.group(()=>{
+
+    Route.resource("/admins", "AdminController")
+
+    Route.resource("/cafes", "CafeController")
+
+    Route.resource("/communitys", "CommunityController")
+
+    Route.resource("/users", "UserController")
+
+  })
