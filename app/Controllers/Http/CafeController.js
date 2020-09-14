@@ -1,7 +1,8 @@
 'use strict'
 
+    const Database = use('Database')
     const Cafe = use('App/Models/Cafe')
-    const cafeUtil = requrire('../../../util/cafeUtil')
+    const CafeUtil = requrire('../../../util/cafeUtil')
 
 
 class CafeController {
