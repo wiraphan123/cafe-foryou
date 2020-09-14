@@ -1,15 +1,19 @@
 'use strict'
 
 const Database = use('Database')
-const User = use('App/Models/User')
-const UserUtil = require('../../../util/UserUtil')
+const User = use('App/Models/SUser')
+const UserUtil = require('../../../util/userUtil')
 
 class UserController {
     async index(){
         const { references } = request.qs
         const userUtill = new UserUtill(User)
         const user = await userUtill.getAll(references)
-        return { status : 200 , error : undefined, data : group}
+        return { 
+            status : 200 , 
+            error : undefined, 
+            data : group
+        }
     }
     async show({request}){
         const { id } = request.params
