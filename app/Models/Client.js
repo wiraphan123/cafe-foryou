@@ -2,16 +2,24 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
+const Hash = use('Hash')
+class Client extends Model {
 
-class SClient extends Model {
+    static boot() {
+        super.boot()
+        this.addHook('beforeSave', async(clientInstance) => {
+            if (clientInstance.dirty.password) {
+                clientInstance.password = await Hash.make(clientInstance.password)
+            }
+        })
+    }
     static get primaryKey() {
-        return 'Usename_id'
+        return 'client_id'
+    }
+
+    cafes() {
+        return this.hasMany('App/Models/Cafe')
+    }
+
 }
-static get primaryKey() {
-    return 'password'
-}
-client() {
-    return this.belongsTo('App/Models/Client')
-}
-}
-module.exports = SClient
+
