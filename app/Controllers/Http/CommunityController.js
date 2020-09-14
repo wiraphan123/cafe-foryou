@@ -1,14 +1,8 @@
 'use strict'
 
 const Database = use('Database')
-const Validator = use('Validator')
 const Community =use("App/Models/Community")
 const CommunityUtill = require("../../../util/Community")
-function numberTypeParamValidator(number) {
-    if(Number.isNaN(parseInt(number))) 
-        return { error:  `param: ${number} is not support, Pleasr use number type param instead. ` }
-    return {}
-}
 
 class CommunityController {
         async index(){
