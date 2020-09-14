@@ -29,6 +29,29 @@ class UserController {
         const user = await userUtill.create({first_name,last_name,age,gender,user_name,password,}, references)
         return { status: 200, error: undefined, data: user }
     }
+    async update({ request }) {
+        const { body, params } = request
+        const { id } = params
+        const { first_name, last_name, age, gender, user_name, password, status } = body
+        const userId = await Database
+            .table('users')
+            .where({ user_id: id })
+            .update({ first_name, last_name, age, gender, user_name, password, status })
+        const user = await Database
+            .table('users')
+            .where({ user_id:userId })
+            .first()
+        return { status: 200, error: undefined, data: user }
+    }
+    async destroy({ request }) {
+        const { id } = request.params
+        await Database
+            .table('user')
+            .where({user_id: id })
+            .delete()
+        return { status: 200, error: undefined, data: { maessage: 'success' } }
+    }
+    
 }
 
 module.exports = UserController
