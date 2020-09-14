@@ -1,17 +1,21 @@
 'use strict'
 
     const Database = use('Database')
-    const Cafe = use('App/Models/Cafe')
-    const CafeUtil = requrire('../../../util/cafeUtil')
+    const Cafe = use('App/Models/SCafe')
+    const CafeUtil = require('../../../util/CafeUtil')
 
 
 class CafeController {
     async index({ request }) {
         const { references } = request.qs
-        const cafeUtil = new CafeUtil(Cafe)
-        const cafe = await cafeUtil.getAll(references)
+        const CafeUtil = new CafeUtil(SCafe)
+        const cafe = await CafeUtil.getAll(references)
 
-        return { status: 200, error: undefined, data: cafe }
+        return { 
+            status: 200, 
+            error: undefined, 
+            data: cafe
+        }
     }
     async show({ request }) {
         const { id } = request.params
