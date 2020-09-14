@@ -3,16 +3,20 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class SWebsite extends Model {
+class Websites extends Model {
+
     static get primaryKey() {
-        return 'admin_id'
-}
-static get primaryKey() {
-    return 'usename_id'
-}
-static get primaryKey() {
-    return 'community_id'
-}
+        return 'websites_id'
+    }
+    static get createdAtColumn() {
+        return null;
+    }
+    static get updatedAtColumn() {
+        return null;
+    }
+    admin_update_website() {
+        return this.belongsTo('App/Models/AdminUpdateWebsite')
+    }
 }
 
-module.exports = SWebsite
+module.exports = Websites
