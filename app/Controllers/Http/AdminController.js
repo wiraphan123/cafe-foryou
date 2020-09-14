@@ -19,7 +19,7 @@ class AdminController {
         const { id } = request.params
         const { references } = request.qs
         AdminValidator(id)
-        const adminUtil = new AdminUtil(Category)
+        const adminUtil = new AdminUtil(Admin)
         const admin = await adminUtil.getById(id,references)
         
         return { status: 200, error: undefined, data: admin || {} }
@@ -27,13 +27,14 @@ class AdminController {
         
     
         async store({ request }) {
+            const {first_name, last_name, age, gender, admin_name, password} = request.body
             const { references } = request.qs
             const validatedData = await AdminValidator(request.body)
             if (validatedData.error){
                 return { status: 422, error: validatedData.error, data: undefined }
         }
             const adminUtil = new AdminUtil(Admin)
-            const admins = await adminUtil.create({ first_name, last_name, age, admin_name, password, status }, references)
+            const admins = await adminUtil.create({ first_name, last_name, age, admin_name, password }, references)
 
         return { status: 200, error: undefined, data: admins }
     
