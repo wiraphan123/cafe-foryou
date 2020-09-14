@@ -3,17 +3,18 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class SCafe extends Model {
+class Cafe extends Model {
     static get primaryKey() {
         return 'cafe_id'
     }
 
-    Cafe() {
-        return this.belongsTo('App/Models/cafe')
+    admin() {
+        return this.belongsTo('App/Models/Admin')
     }
     user() {
         return this.belongsTo('App/Models/User')
     }
 }
 
-module.exports = SCafe
+module.exports = Cafe
+
