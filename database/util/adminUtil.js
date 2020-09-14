@@ -1,4 +1,4 @@
-class adminUtil {
+class AdminUtil {
 
     constructor(AdminModel) {
         this._Admin = AdminModel
