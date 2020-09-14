@@ -1,8 +1,8 @@
 'use strict'
 
 const Database = use('Database')
-const Community =use("App/Models/Community")
-const CommunityUtill = require("../../../util/Community")
+const Community =use("App/Models/SCommunity")
+const CommunityUtill = require('../../../util/community')
 
 class CommunityController {
         async index(){
@@ -10,9 +10,13 @@ class CommunityController {
             const communityUtill = new CommunityUtill(Community)
             const community = await communityUtill.getAll(references)
             
-            return { status : 200 , error : undefined, data : group}
+            return { 
+                status : 200 , 
+                error : undefined, 
+                data : group
+            }
         }
-        async show({request}){
+        async show({ request }){
             const { id } = request.params
             const { references } = request.qs
             const communityUtill = new CommunityUtill(Community)
