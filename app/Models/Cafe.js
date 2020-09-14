@@ -11,8 +11,8 @@ class Cafe extends Model {
     admin() {
         return this.belongsTo('App/Models/Admin')
     }
-    user() {
-        return this.belongsTo('App/Models/User')
+    client() {
+        return this.belongsTo('App/Models/Client')
     }
 }
 
