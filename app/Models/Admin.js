@@ -2,8 +2,9 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
+const Hash = use('Hash')
+class Admin extends Model {
 
-class SAdmin extends Model {
     static boot() {
         super.boot()
         this.addHook('beforeSave', async(adminInstance) => {
@@ -12,18 +13,14 @@ class SAdmin extends Model {
             }
         })
     }
+
     static get primaryKey() {
         return 'admin_id'
-
     }
 
-    update_websites() {
-        return this.hasMany('App/Models/AdminUpdateWebsite')
-}
-    cafes() {
+    stores() {
         return this.hasMany('App/Models/Cafe')
     }
 }
 
-
-module.exports = SAdmin
+module.exports = Admin
