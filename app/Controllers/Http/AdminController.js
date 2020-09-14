@@ -1,5 +1,9 @@
 'use strict'
 
+const Database = use('Database')
+const Admin = use('App/Models/Admin')
+const AdminUtil = require("../../../util/adminUtil")
+
 class AdminController {
     async index({ request }) {
         const { references } = request.qs
