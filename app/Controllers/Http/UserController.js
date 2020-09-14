@@ -1,12 +1,8 @@
 'use strict'
 
 const Database = use('Database')
-const Validator = use('Validator')
-function numberTypeParamValidator(number) {
-    if(Number.isNaN(parseInt(number))) 
-        return { error:  `param: ${number} is not support, Pleasr use number type param instead. ` }
-    return {}
-}
+const User = use('App/Models/User')
+const UserUtil = require("../../../util/UserUtil")
 
 class UserController {
     async index(){
