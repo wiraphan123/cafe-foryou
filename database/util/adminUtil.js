@@ -41,3 +41,5 @@ class adminUtil {
         return instance
     }
 }
+
+module.exports = AdminUtil
