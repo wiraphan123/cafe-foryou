@@ -2,7 +2,7 @@
 
 const Database = use('Database')
 const User = use('App/Models/User')
-const UserUtil = require("../../../util/UserUtil")
+const UserUtil = require('../../../util/UserUtil')
 
 class UserController {
     async index(){
