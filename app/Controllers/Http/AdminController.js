@@ -1,25 +1,17 @@
 'use strict'
 
-const Database = use('Database')
-const Admin = use('App/Models/Admin')
+const Admin = use('App/Models/SAdmin')
 const AdminUtil = require("../../../util/adminUtil")
 
 class AdminController {
-<<<<<<< HEAD
-    async store({ request }) {
-        const { news, detail } = request.body
-
-
-        return { status: 200, error: undefined, data: subject }
-
-=======
-    async index({ request }) {
+    async index({ request }){
         const { references } = request.qs
         const adminUtil = new AdminUtil(Admin)
         const admins = await adminUtil.getAll(references)
-        return { status: 200, error: undefined, data: admins }
->>>>>>> 3bcc4b731dce9d8c624417739e5a2f66e4bb103c
+        return { status:200,error:undefined,data:admins }
     }
+
+    
     async show({ request }) {
         const { id } = request.params
         const { references } = request.qs
@@ -37,7 +29,11 @@ class AdminController {
             const validatedData = await AdminValidator(request.body)
             if (validatedData.error)
                 return { status: 422, error: validatedData.error, data: undefined }
+            
+            const admin = await Admin
+                .create({ first_name, last_name, age, gender, admin_name, password, status })
     }
+
 }
 
 module.exports = AdminController
