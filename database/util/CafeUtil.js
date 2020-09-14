@@ -6,6 +6,12 @@ class CafeUtil {
 
     getAll(references) {
         const cafe = this._Cafe.query()
+        if (references) {
+            const extractedReferences = references.split(",");
+            extractedReferences.forEach(reference => {
+                cafe.with(reference)
+            });
+        }
 
         return this._withReference(cafe, references)
             .fetch()
