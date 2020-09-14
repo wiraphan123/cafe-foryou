@@ -2,7 +2,14 @@
 
     const Database = use('Database')
     const Cafe = use('App/Models/Cafe')
+    const CafeValidator = require("../../../service/CafeValidator")
     const CafeUtil = requrire('../../../util/cafeUtil')
+
+    function numberTypeParamValidator(number) {
+        if (Number.isNaN(parseInt(number)))
+            return { error: `param: ${number} is not supported, please use number type param instead.` }
+        return {}
+    }
 
 
 class CafeController {
@@ -25,7 +32,7 @@ class CafeController {
         return { status: 200, error: undefined, data: cafe || {} }
 
     }
-    async cafe({ request }) {
+    async store({ request }) {
         const { cafe_name, detail, comment_review, user_id, admin_id } = request.body
         const validatedData = await CafeValidator(request.body)
         if (validatedData.error)
