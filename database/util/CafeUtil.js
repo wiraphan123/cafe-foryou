@@ -47,3 +47,5 @@ class CafeUtil {
         return instance
     }
 }
+
+module.exports = CafeUtil
