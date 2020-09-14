@@ -5,11 +5,20 @@ const Admin = use('App/Models/Admin')
 const AdminUtil = require("../../../util/adminUtil")
 
 class AdminController {
+<<<<<<< HEAD
+    async store({ request }) {
+        const { news, detail } = request.body
+
+
+        return { status: 200, error: undefined, data: subject }
+
+=======
     async index({ request }) {
         const { references } = request.qs
         const adminUtil = new AdminUtil(Admin)
         const admins = await adminUtil.getAll(references)
         return { status: 200, error: undefined, data: admins }
+>>>>>>> 3bcc4b731dce9d8c624417739e5a2f66e4bb103c
     }
     async show({ request }) {
         const { id } = request.params
