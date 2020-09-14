@@ -40,3 +40,5 @@ class CommunityUtil{
         return instance
     }
 } 
+
+module.exports = CommunityUtil
