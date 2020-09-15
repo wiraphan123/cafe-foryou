@@ -27,14 +27,17 @@ Factory.blueprint('App/Models/Admin', (faker) => {
 })
 Factory.blueprint('App/Models/AdminupdataWebsite', (faker) =>{
     return{
-        post : faker.post({varchar : 1000}),
-        detail : faker.detail()
+        news: faker.sentence({ words: 4 }),
+        detail: faker.sentence()
     }
 })
 Factory.blueprint('App/Models/Cafe', (faker) =>{
     return{
-        cafe_name : faker.cafe(),
-        detail : faker.detail()
+        cafe_name: faker.name(),
+        detail: faker.sentence(),
+        comment_review: faker.sentence({ words: 5 }),
+        admin_id: faker.integer({ min: 1, max: 10 }),
+        user_id: faker.integer({ min: 1, max: 10 }),
     }
 
 })
@@ -50,16 +53,14 @@ Factory.blueprint('App/Models/Client', (faker) =>{
 })
 Factory.blueprint('App/Models/Community', (faker) =>{
     return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
+        post: faker.sentence({ words: 5 }),
+        comment_post: faker.sentence(),
+        user_id: faker.integer({ min: 1, max: 10 }),
     }
 })
 Factory.blueprint('App/Models/Webiste',(faker) =>{
     return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
+        update_websites_id: faker.integer({ min: 1, max: 10 })
     }
 })
 // Factory.blueprint('App/Models/User', (faker) => {
