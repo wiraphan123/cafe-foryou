@@ -20,6 +20,9 @@ class Client extends Model {
     cafes() {
         return this.hasMany('App/Models/Cafe')
     }
+    Client(){
+        return this.hasMany('App/Models/Client')
+    }
 
 }
 
