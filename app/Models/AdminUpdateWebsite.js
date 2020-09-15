@@ -12,6 +12,9 @@ class AdminUpdateWebsite extends Model {
     news() {
         return this.hasMany('App/Models/Websites')
     }
+    new(){
+        return this.hasMany('App/Models/Community')
+    }
 }
 
 module.exports = AdminUpdateWebsite
