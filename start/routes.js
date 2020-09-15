@@ -27,4 +27,4 @@ Route.group(() => {
   Route.resource('/admin_update_websites', 'AdminUpdateWebsiteController')
   Route.resource('/websites', 'WebsitesController')
   Route.resource('/cafes', 'CafeController')
-}).prefix('api/v2')
+}).prefix('api/v1').prefix
