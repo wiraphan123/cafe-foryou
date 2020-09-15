@@ -20,20 +20,24 @@ Factory.blueprint('App/Models/Admin', (faker) => {
         frist_name : faker.frist(),
         last_name : faker.last(),
         age : faker.age(),
+        gender : faker.gender(),
         admin_name: faker.admin(),
         password : faker.word({length : 8})
     }
 })
-Factory.blueprint('App/Models/AdminUpdataWebsite', (faker) =>{
+Factory.blueprint('App/Models/AdminupdataWebsite', (faker) =>{
     return{
-        post : faker.post({varchar : 1000}),
-        detail : faker.detail()
+        news: faker.sentence({ words: 4 }),
+        detail: faker.sentence()
     }
 })
 Factory.blueprint('App/Models/Cafe', (faker) =>{
     return{
-        cafe_name : faker.cafe(),
-        detail : faker.detail()
+        cafe_name: faker.name(),
+        detail: faker.sentence(),
+        comment_review: faker.sentence({ words: 5 }),
+        admin_id: faker.integer({ min: 1, max: 10 }),
+        user_id: faker.integer({ min: 1, max: 10 }),
     }
 
 })
@@ -47,33 +51,16 @@ Factory.blueprint('App/Models/Client', (faker) =>{
         password : faker.word({length : 8})
     }
 })
-Factory.blueprint('App/Models/ClientsWatchCafe', (faker) =>{
-    return{
-        cafe_name : faker.cafe(),
-        detail : faker.detail(),
-        comment_review : faker.comment()
-        
-    }
-})
 Factory.blueprint('App/Models/Community', (faker) =>{
     return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
+        post: faker.sentence({ words: 5 }),
+        comment_post: faker.sentence(),
+        user_id: faker.integer({ min: 1, max: 10 }),
     }
 })
-Factory.blueprint('App/Models/User_post_Community', (faker) =>{
+Factory.blueprint('App/Models/Webiste',(faker) =>{
     return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
-    }
-})
-Factory.blueprint('App/Models/WatchWebiste',(faker) =>{
-    return{
-        post : faker.post(),
-        comment_post : faker.comment(),
-        detail_time : faker.detail()
+        update_websites_id: faker.integer({ min: 1, max: 10 })
     }
 })
 // Factory.blueprint('App/Models/User', (faker) => {
