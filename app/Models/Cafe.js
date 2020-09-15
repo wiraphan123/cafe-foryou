@@ -14,6 +14,9 @@ class Cafe extends Model {
     client() {
         return this.belongsTo('App/Models/Client')
     }
+    Website() {
+        return this.belongsTo('App/Modls/Website')
+    }
 }
 
 module.exports = Cafe
