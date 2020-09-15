@@ -21,6 +21,9 @@ class Admin extends Model {
     stores() {
         return this.hasMany('App/Models/Cafe')
     }
+    Community() {
+        return this.hasMany('App/Models/Community')
+    }
 }
 
 module.exports = Admin
