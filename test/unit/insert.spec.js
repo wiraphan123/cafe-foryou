@@ -54,14 +54,14 @@ test('should insert value to community table', async ({ client }) => {
   })
   test('should insert value to news table', async ({ client }) => {
       const user = {
-            update_news_id:"1"
+            update_websites_id:"1"
       }
       const response = await client.post(urlUsers).send(user).end()
       response.assertStatus(200)
     })
     test('should insert value to store table', async ({ client }) => {
       const user = {
-            store_name: "actshop",
+            cafe_name: "kormadikub",
             detail: "lowpice",
             comment_review: "good"
       }
