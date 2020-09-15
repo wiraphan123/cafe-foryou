@@ -2,8 +2,8 @@
 
 const { test } = use('Test/Suite')('Insert')
 
-const urlUsers = "/api/v2/users"
-const UserModel = use('App/Models/User')
+const urlClients = "/api/v2/clients"
+const ClientModel = use('App/Models/Client')
 
 const urlAdmins = "/api/v2/admins"
 const AdminModel = use('App/Models/Admin')
@@ -19,52 +19,39 @@ const CafeModel = use('App/Models/Cafe')
 
 trait("Test/ApiClient");
 
-test('should insert value to user table', async ({ client }) => {
-  const user = {
-        first_name: "John",
+test('should insert value to client table', async ({ client }) => {
+  const client = {
+        first_name: "Voy",
         last_name: "Doe",
         age: '20',
-        user_name: "Johnlnwza",
+        gender: 'male',
+        client_name: "Voyeiei",
         password: "12345678",
-        status: "user"
+        
   }
-  const response = await client.post(urlUsers).send(user).end()
+  const response = await client.post(urlClients).send(client).end()
   response.assertStatus(200)
 })
 
 test('should insert value to admin table', async ({ client }) => {
     const admin = {
-        first_name: "John",
-        last_name: "Doe",
-        age: '20',
-        admin_name: "Johnlnwzazaa",
-        password: "12345678",
-        status: "admin"
+      first_name: "Voy",
+      last_name: "Doe",
+      age: '20',
+      gender: 'male',
+      client_name: "Voyeiei",
+      password: "12345678",
+      
     }
     const response = await client.post(urlAdmins).send(admin).end()
     response.assertStatus(200)
   })
 test('should insert value to community table', async ({ client }) => {
-    const user = {
-          post: "John",
+    const client = {
+          post: "Voy",
           comment_post:"goodd"
     }
-    const response = await client.post(urlUsers).send(user).end()
+    const response = await client.post(urlClients).send(client).end()
     response.assertStatus(200)
   })
-  test('should insert value to news table', async ({ client }) => {
-      const user = {
-            update_websites_id:"1"
-      }
-      const response = await client.post(urlUsers).send(user).end()
-      response.assertStatus(200)
-    })
-    test('should insert value to store table', async ({ client }) => {
-      const user = {
-            cafe_name: "kormadikub",
-            detail: "lowpice",
-            comment_review: "good"
-      }
-      const response = await client.post(urlUsers).send(user).end()
-      response.assertStatus(200)
-    })
+ 
