@@ -20,14 +20,11 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-  Route.group(()=>{
-
-    Route.resource("/admins", "AdminController")
-
-    Route.resource("/cafes", "CafeController")
-
-    Route.resource("/communitys", "CommunityController")
-
-    Route.resource("/users", "UserController")
-
-  })
+Route.group(() => {
+  Route.resource('/users', 'UserController')
+  Route.resource('/communities', 'CommunityController')
+  Route.resource('/admins', 'AdminController')
+  Route.resource('/admin_update_websites', 'AdminUpdateWebsiteController')
+  Route.resource('/websites', 'WebsitesController')
+  Route.resource('/cafes', 'CafeController')
+}).prefix('api/v2')
