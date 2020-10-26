@@ -1,77 +1,73 @@
 'use strict'
-const AdminupdateValidator = require("../../../service/AdminupdateValidator")
+const AdminUpdateValidator = require("../../../service/AdminUpdateValidator")
 const Database = use('Database')
-const Adminupdate = use("App/Models/AdminupdateWebsite")
-const AdminupdateUtil = require("../../../util/AdminupdateUtil")
+const AdminUpdate = use("App/Models/AdminupdateController")
+const AdminUpdateUtil = require("../../../util/AdminUpdateUtil")
 
-function numberTypeParamValidator(number) {
-    if (Number.isNaN(parseInt(number)))
-        return { error: `param: ${number} is not supported, please use number type param instead.` }
-    return {}
-}
+
 
 class AdminupdateController {
     async index({ request }) {
         const { references } = request.qs
-        const adminupdateUtil = new AdminupdateUtil(Adminupdate)
-        const adminupdates = await adminupdateUtil.getAll(references)
+        const adminUpdateUtil = new AdminUpdateUtil(AdminUpdate)
+        const adminUpdates = await adminUpdateUtil.getAll(references)
 
         return { status: 200, error: undefined, data: adminUpdates }
-}
-async show({ request }) {
-    const { id } = request.params
-    const { references } = request.qs
-    const validatedValue = numberTypeParamValidator(id)
-    if (validatedValue.error)
-        return { status: 500, error: validatedValue.error, data: undefined }
-    const adminupdateUtil = new AdminupdateUtil(AdminUpdate)
-    const adminupdates = adminupdateUtil.getById(id, references)
-    return { status: 200, error: undefined, data: adminupdates || {} }
-}
-async store({ request }) {
-    const { websites, detail } = request.body
-    const { references } = request.qs
-    const validatedData = await AdminupdateValidator(request.body)
-    if (validatedData.error)
-        return { status: 422, error: validatedData.error, data: undefined }
+    }
+    async show({ request }) {
+        const { id } = request.params
+        const { references } = request.qs
+        const validatedValue = numberTypeParamValidator(id)
+        if (validatedValue.error)
+            return { status: 500, error: validatedValue.error, data: undefined }
+        const adminUpdateUtil = new AdminUpdateUtil(AdminUpdate)
+        const adminUpdates = adminUpdateUtil.getById(id, references)
+        return { status: 200, error: undefined, data: adminUpdates || {} }
+
+    }
+    async store({ request }) {
+        const { wedsite, detail } = request.body
+        const { references } = request.qs
+        const validatedData = await AdminUpdateValidator(request.body)
+        if (validatedData.error)
+            return { status: 422, error: validatedData.error, data: undefined }
 
 
-    const adminupdateUtil = new AdminupdateUtil(Adminupdate)
-    const adminupdates = await adminupdateUtil.create({ websites, detail }, references)
+        const adminUpdateUtil = new AdminUpdateUtil(AdminUpdate)
+        const adminUpdates = await adminUpdateUtil.create({ news, detail }, references)
 
-    return { status: 200, error: undefined, data: adminupdates }
-}
-async update({ request }) {
+        return { status: 200, error: undefined, data: adminUpdates }
 
-    const { body, params } = request
-    const { id } = params
-    const { websites, detail } = body
+    }
+    async update({ request }) {
+
+        const { body, params } = request
+        const { id } = params
+        const { website, detail } = body
 
 
-    const adminupdateId = await Database
-        .table('admin_update_websites')
-        .where({ update_websites_id: id })
-        .update({ websites, detail })
+        const adminUpdateId = await Database
+            .table('admin_update_wedsite')
+            .where({ update_website_id: id })
+            .update({ website, detail })
 
-    const adminupdates = await Database
-        .table('admin_update_websites')
-        .where({ update_websites_id: adminupdateId })
-        .first()
+        const adminUpdates = await Database
+            .table('admin_update_website')
+            .where({ update_website_id: adminUpdateId })
+            .first()
 
-    return { status: 200, error: undefined, data: adminupdates }
-}
-async destroy({ request }) {
-    const { id } = request.params
+        return { status: 200, error: undefined, data: adminUpdates }
+    }
+    async destroy({ request }) {
+        const { id } = request.params
 
-    await Database
-        .table('admin_update_websites')
-        .where({ update_websites_id: id })
-        .delete()
+        await Database
+            .table('admin_update_website')
+            .where({ update_website_id: id })
+            .delete()
 
-    return { status: 200, error: undefined, data: { maessage: 'success' } }
+        return { status: 200, error: undefined, data: { maessage: 'success' } }
     }
 }
 
-
-
-module.exports = AdminupdateController
+module.exports = AdminupdateController;

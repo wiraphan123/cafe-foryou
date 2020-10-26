@@ -24,7 +24,11 @@ Route.group(() => {
   Route.resource('/users', 'UserController')
   Route.resource('/communities', 'CommunityController')
   Route.resource('/admins', 'AdminController')
-  Route.resource('/admin_update_websites', 'AdminUpdateWebsiteController')
+  Route.resource('/adminupdatewebsites', 'AdminUpdateWebsiteController')
   Route.resource('/websites', 'WebsitesController')
   Route.resource('/cafes', 'CafeController')
+<<<<<<< HEAD
 }).prefix('api/v1')
+=======
+}).prefix('api/v1').prefix
+>>>>>>> 345c4955807461277defbaeb87b5dcb19a3f7054
