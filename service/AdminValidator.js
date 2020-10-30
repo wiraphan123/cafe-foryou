@@ -1,15 +1,15 @@
 const Validator = use('Validator')
-module.exports = async function adminValidator(data) {
+module.exports = async function AdminValidator(data) {
     if (typeof data !== 'object') throw new Error()
-    const { first_name, last_name, age, admin_name, password, status } = data
+    const { first_name, last_name, age, gender, admin_name, password, status } = data
     const rules = {
         first_name: 'required',
         last_name: 'required',
         age: 'required',
-        gender: 'required',
+        grnder: 'required',
         admin_name: 'required',
         password: 'required|min:8',
-        
+        status: 'required',
     }
 
     const validation = await Validator.validateAll({
@@ -25,4 +25,4 @@ module.exports = async function adminValidator(data) {
     return {
         error: validation.messages()
     }
-} 
+}
