@@ -26,7 +26,7 @@ class AdminupdateController {
 
     }
     async store({ request }) {
-        const { wedsite, detail } = request.body
+        const { website, detail } = request.body
         const { references } = request.qs
         const validatedData = await AdminUpdateValidator(request.body)
         if (validatedData.error)
@@ -43,17 +43,17 @@ class AdminupdateController {
 
         const { body, params } = request
         const { id } = params
-        const { website, detail } = body
+        const { news, detail } = body
 
 
         const adminUpdateId = await Database
-            .table('admin_update_wedsite')
-            .where({ update_website_id: id })
-            .update({ website, detail })
+            .table('admin_update_news')
+            .where({ update_news_id: id })
+            .update({ news, detail })
 
         const adminUpdates = await Database
-            .table('admin_update_website')
-            .where({ update_website_id: adminUpdateId })
+            .table('admin_update_news')
+            .where({ update_news_id: adminUpdateId })
             .first()
 
         return { status: 200, error: undefined, data: adminUpdates }
@@ -62,12 +62,12 @@ class AdminupdateController {
         const { id } = request.params
 
         await Database
-            .table('admin_update_website')
-            .where({ update_website_id: id })
+            .table('admin_update_news')
+            .where({ update_news_id: id })
             .delete()
 
         return { status: 200, error: undefined, data: { maessage: 'success' } }
     }
 }
 
-module.exports = AdminupdateController;
+module.exports = AdminupdateController

@@ -4,15 +4,15 @@ module.exports = async function AdminUpdateValidator(data) {
     const { post,comment_post  } = data
     const rules = {
         post: 'required',
-        comment_post: 'required',
+        
 
     }
 
     const validation = await Validator.validateAll({
-       post,comment_post,
+       post,
     }, rules)
 
     return {
         error: validation.messages()
     }
-} 
+}
